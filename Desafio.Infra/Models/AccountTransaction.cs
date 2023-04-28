@@ -2,6 +2,7 @@ namespace Desafio.Infra.Models
 {
    public class AccountTransaction
    {
+      public Int64 Id{get;set;}
       public int Account { get; set; }
 
       public decimal Amount { get; set; }
@@ -15,5 +16,5 @@ namespace Desafio.Infra.Models
 
    }
 
-   public enum OperationType { Debit, Credit }
+   public enum OperationType { Debit, Credit }//Débito = Entrada de Valores, Crédito = Saída de Valores
 }

@@ -22,4 +22,11 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Desafio.Web\Desafio.Web.csproj" />
+    <ProjectReference Include="..\Desafio.Infra\Desafio.Infra.csproj" />
+    <ProjectReference Include="..\Desafio.Services\Desafio.Services.csproj" />
+    <ProjectReference Include="..\Desafio.ViewModels\Desafio.ViewModels.csproj" />
+  </ItemGroup>
+
 </Project>

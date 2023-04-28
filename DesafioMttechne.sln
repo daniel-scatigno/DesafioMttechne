@@ -9,6 +9,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Desafio.Infra", "Desafio.In
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Desafio.Test", "Desafio.Test\Desafio.Test.csproj", "{3FFBACAD-47EF-4EB6-81E7-0E6651756753}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Desafio.Services", "Desafio.Services\Desafio.Services.csproj", "{97D620AF-B4E4-4C84-905E-46179594D2D6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Desafio.ViewModels", "Desafio.ViewModels\Desafio.ViewModels.csproj", "{2ED791D6-F920-4F86-880D-574DF0A75FE1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,5 +34,13 @@ Global
 		{3FFBACAD-47EF-4EB6-81E7-0E6651756753}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3FFBACAD-47EF-4EB6-81E7-0E6651756753}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3FFBACAD-47EF-4EB6-81E7-0E6651756753}.Release|Any CPU.Build.0 = Release|Any CPU
+		{97D620AF-B4E4-4C84-905E-46179594D2D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{97D620AF-B4E4-4C84-905E-46179594D2D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{97D620AF-B4E4-4C84-905E-46179594D2D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{97D620AF-B4E4-4C84-905E-46179594D2D6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2ED791D6-F920-4F86-880D-574DF0A75FE1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2ED791D6-F920-4F86-880D-574DF0A75FE1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2ED791D6-F920-4F86-880D-574DF0A75FE1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2ED791D6-F920-4F86-880D-574DF0A75FE1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

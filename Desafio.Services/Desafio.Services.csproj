@@ -1,7 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <ItemGroup>
-    <ProjectReference Include="..\Desafio.Models\Desafio.Models.csproj" />
+  <ItemGroup>    
     <ProjectReference Include="..\Desafio.Infra\Desafio.Infra.csproj" />
     <PackageReference Include="AutoMapper" Version="11.0.1" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
