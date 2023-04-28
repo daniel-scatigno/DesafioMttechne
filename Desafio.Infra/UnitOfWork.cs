@@ -11,12 +11,12 @@ using System.Reflection;
 
 namespace Desafio.Infra
 {
-   public class RentalLibraryUnitOfWork : IUnitOfWork
+   public class DesafioUnitOfWork : IUnitOfWork
    {
       private DbContext Context { get; set; }
       protected IDbContextTransaction Transaction { get; set; }
 
-      public RentalLibraryUnitOfWork(DbContext context)
+      public DesafioUnitOfWork(DbContext context)
       {
          Context = context;
       }

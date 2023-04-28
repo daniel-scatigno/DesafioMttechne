@@ -1,4 +1,4 @@
-using RentalLibrary.Infra.Models;
+using Desafio.Infra.Models;
 using Microsoft.EntityFrameworkCore;
 namespace Desafio.Infra.Repository
 {
