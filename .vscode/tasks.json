@@ -14,6 +14,18 @@
          "problemMatcher": "$msCompile"
       },
       {
+         "label": "buildAPI",
+         "command": "dotnet",
+         "type": "process",
+         "args": [
+            "build",
+            "${workspaceFolder}/Desafio.API/Desafio.API.csproj",
+            "/property:GenerateFullPaths=true",
+            "/consoleloggerparameters:NoSummary"
+         ],
+         "problemMatcher": "$msCompile"
+      },
+      {
          "label": "publish",
          "command": "dotnet",
          "type": "process",
@@ -36,6 +48,104 @@
             "${workspaceFolder}/Desafio.Web/Desafio.Web.csproj"
          ],
          "problemMatcher": "$msCompile"
+      },
+      {
+         "label": "Migration Add",
+         "command": "dotnet",
+         "type": "shell",
+         "args": [
+            "ef",
+            "migrations",
+            "add",
+            "${input:MigrationName}",
+            "--project",
+            "${workspaceFolder}/Desafio.Infra/Desafio.Infra.csproj",
+            "--startup-project",
+            "${workspaceFolder}/Desafio.API/Desafio.API.csproj"
+         ],
+         "problemMatcher": []
+      },
+      {
+         "label": "Migration Remove Last",
+         "command": "dotnet",
+         "type": "shell",
+         "args": [
+            "ef",
+            "migrations",
+            "remove",
+            "--project",
+            "${workspaceFolder}/Desafio.Infra/Desafio.Infra.csproj",
+            "--startup-project",
+            "${workspaceFolder}/Desafio.API/Desafio.API.csproj"
+         ],
+         "problemMatcher": []
+      },
+      {
+         "label": "Migration UpdateDatabase",
+         "command": "dotnet",
+         "type": "shell",
+         "args": [
+            "ef",
+            "database",
+            "update",
+            "--project",
+            "${workspaceFolder}/Desafio.Infra/Desafio.Infra.csproj",
+            "--startup-project",
+            "${workspaceFolder}/Desafio.API/Desafio.API.csproj"
+         ],
+         "problemMatcher": []
+      },
+      {
+         "label": "Migration Revert To",
+         "command": "dotnet",
+         "type": "shell",
+         "args": [
+            "ef",
+            "database",
+            "update",
+            "${input:MigrationName}",
+            "--project",
+            "${workspaceFolder}/Desafio.Infra/Desafio.Infra.csproj",
+            "--startup-project",
+            "${workspaceFolder}/Desafio.API/Desafio.API.csproj"
+         ],
+         "problemMatcher": []
+      },
+      {
+         "label": "DOCKER BUILD",
+         "command": "docker",
+         "type": "shell",
+         "args": [
+            "build",
+            "-t",
+            "Desafio",
+            "."
+         ],
+         "problemMatcher": []
+      },
+      {
+         "label": "DOCKER RUN",
+         "command": "docker",
+         "type": "shell",
+         "args": [
+            "run",
+            "-it",
+            "--rm",
+            "-p",
+            "5001:80",
+            "--name",
+            "Desafio",
+            "Desafio"
+         ],
+         "problemMatcher": []
+      }
+   ],
+   "inputs": [
+      {
+         "id": "MigrationName",
+         "type": "promptString",
+         "description": "Nome da Migration"
+         // type specific configuration attributes
       }
    ]
 }

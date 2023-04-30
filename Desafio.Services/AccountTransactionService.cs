@@ -35,6 +35,11 @@ public class AccountTransactionService : DesafioService<AccountTransaction>
       return Repo.GetBy(x => x.Account == account).OrderByDescending(x => x.Date).Select(x => x.HistoricBalance).FirstOrDefault();
    }
 
+   public decimal GetLastBalance(int account, DateTime date)
+   {
+      return Repo.GetBy(x => x.Account == account && x.Date.Date==date.Date).OrderByDescending(x => x.Date).Select(x => x.HistoricBalance).FirstOrDefault();
+   }
+
    public List<AccountTransactionViewModel> ListByDate(int account, DateTime date)
    {
       return Repo.GetBy(x => x.Account == account && x.Date.Date == date.Date)

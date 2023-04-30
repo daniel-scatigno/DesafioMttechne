@@ -1,12 +1,12 @@
 global using Desafio.Infra.Models;
 global using Desafio.Infra;
 global using Desafio.Infra.Repository;
-global using Desafio.Service;
+global using Desafio.Services;
 global using Desafio.ViewModels;
 using AutoMapper;
 
 
-namespace Desafio.Service;
+namespace Desafio.Services;
 
 public abstract class DesafioService<T> where T : class
 {

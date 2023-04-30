@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Desafio.Services", "Desafio
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Desafio.ViewModels", "Desafio.ViewModels\Desafio.ViewModels.csproj", "{2ED791D6-F920-4F86-880D-574DF0A75FE1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Desafio.API", "Desafio.API\Desafio.API.csproj", "{12636135-F63B-4143-AEA0-EC145AB76126}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -42,5 +44,9 @@ Global
 		{2ED791D6-F920-4F86-880D-574DF0A75FE1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2ED791D6-F920-4F86-880D-574DF0A75FE1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2ED791D6-F920-4F86-880D-574DF0A75FE1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{12636135-F63B-4143-AEA0-EC145AB76126}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{12636135-F63B-4143-AEA0-EC145AB76126}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{12636135-F63B-4143-AEA0-EC145AB76126}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{12636135-F63B-4143-AEA0-EC145AB76126}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

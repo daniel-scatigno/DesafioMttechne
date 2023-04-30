@@ -1,7 +1,7 @@
 
 using AutoMapper;
 using AutoMapper.Internal;
-namespace Desafio.Service;
+namespace Desafio.Services;
 
 public static class MappingExtension
 {
