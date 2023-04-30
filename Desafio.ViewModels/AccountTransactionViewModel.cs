@@ -7,11 +7,11 @@ public class AccountTransactionViewModel
 
    public decimal Amount { get; set; }
 
-   public DateTime Date { get; }
+   public DateTime Date { get; set;}
 
    public OperationType Type { get; set; }
 
-   public decimal HistoricBalance { get; }
+   public decimal HistoricBalance { get;set; }
 
 }
 public enum OperationType
