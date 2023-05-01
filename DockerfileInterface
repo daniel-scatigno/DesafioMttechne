@@ -9,11 +9,11 @@ RUN dotnet restore
 
 # copy everything else and build app
 COPY /. ./
-WORKDIR /source/Desafio.API
+WORKDIR /source/Desafio.Web
 RUN dotnet publish -c release -o /app
 
 # final stage/image
 FROM mcr.microsoft.com/dotnet/aspnet:7.0
 WORKDIR /app
 COPY --from=build /app ./
-ENTRYPOINT ["dotnet", "Desafio.API.dll"]
+ENTRYPOINT ["dotnet", "Desafio.Web.dll"]

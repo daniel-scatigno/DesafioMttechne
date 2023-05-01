@@ -5,6 +5,7 @@ using Desafio.Infra;
 using Desafio.Infra.Repository;
 using Desafio.Services;
 using Microsoft.EntityFrameworkCore;
+using System.Globalization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -26,6 +27,10 @@ builder.Services.AddScoped<AccountTransactionService>(s =>
    new AccountTransactionService(s.GetRequiredService<AccountTransactionRepository>(),
    s.GetRequiredService<IUnitOfWork>() ));
    
+
+var cultureInfo = new CultureInfo("pt-BR");
+CultureInfo.DefaultThreadCurrentCulture = cultureInfo;
+CultureInfo.DefaultThreadCurrentUICulture = cultureInfo;
 
 var app = builder.Build();
 

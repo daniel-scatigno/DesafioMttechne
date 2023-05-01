@@ -112,19 +112,35 @@
          "problemMatcher": []
       },
       {
-         "label": "DOCKER BUILD",
+         "label": "DOCKER BUILD INTERFACE",
          "command": "docker",
          "type": "shell",
          "args": [
             "build",
-            "-t",
-            "Desafio",
-            "."
+            ".",
+            "-f",
+            "DockerfileInterface",
+            "--tag",
+            "desafiowebimage:latest"
          ],
          "problemMatcher": []
       },
       {
-         "label": "DOCKER RUN",
+         "label": "DOCKER BUILD API",
+         "command": "docker",
+         "type": "shell",
+         "args": [
+            "build",
+            ".",
+            "-f",
+            "Dockerfile",
+            "--tag",
+            "desafioimage:latest"
+         ],
+         "problemMatcher": []
+      },
+      {
+         "label": "DOCKER RUN API",
          "command": "docker",
          "type": "shell",
          "args": [
@@ -132,10 +148,30 @@
             "-it",
             "--rm",
             "-p",
-            "5001:80",
+            "8080:5000",
+            "-e",
+            "ASPNETCORE_URLS=http://+:5000",
             "--name",
-            "Desafio",
-            "Desafio"
+            "desafioapp",
+            "desafioimage"
+         ],
+         "problemMatcher": []
+      },
+      {
+         "label": "DOCKER RUN WEB",
+         "command": "docker",
+         "type": "shell",
+         "args": [            
+            "run",
+            "-it",
+            "--rm",
+            "-p",
+            "8090:5020",
+            "-e",
+            "ASPNETCORE_URLS=http://+:5020",
+            "--name",
+            "desafiowebapp",
+            "desafiowebimage"
          ],
          "problemMatcher": []
       }
