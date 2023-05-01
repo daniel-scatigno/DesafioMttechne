@@ -21,8 +21,6 @@ namespace Desafio.Infra
          //Exemplo de dados padrões quando necessário
          //builder.Entity<AccountTransaction>().HasData(new AccountTransaction() { Account = 1, Amount=1000});
          
-
-         
       }
 
    }

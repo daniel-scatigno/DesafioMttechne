@@ -1,9 +1,175 @@
 ﻿@page "/"
+@using Desafio.Services;
+@using ViewModels;
+@using Microsoft.AspNetCore.Components;
+
+@inject AccountTransactionService _Service;
 
 <PageTitle>Index</PageTitle>
 
-<h1>Hello, world!</h1>
+<h1>Desafio da Mttechne</h1>
 
-Welcome to your new app.
+<div class="row">
+   <div class="col-xl-6">
+      <div class="card">
+         <div class="card-header">
+            Fluxo de Caixa
+         </div>
+         <div class="card-body">
 
-<SurveyPrompt Title="How is Blazor working for you?" />
+            <label for="" class="form-label">Débito</label>
+            <div class="input-group mb-3">
+               <input type="number" class="form-control" @bind-value="DebitValue" />
+               <button type="button" @onclick="AddDebit" class="btn btn-outline-secondary">Adicionar</button>
+            </div>
+
+
+            <label for="" class="form-label">Crédito</label>
+            <div class="input-group mb-3">
+               <input type="numer" class="form-control" @bind-value="CreditValue" />
+               <button type="submit" class="btn btn-outline-secondary" @onclick="AddCredit">Adicionar</button>
+            </div>
+
+         </div>
+
+      </div>
+
+   </div>
+   <div class="col-xl-6">
+      <div class="card">
+         <div class="card-header">
+            <div class="d-flex">
+               <div class="flex-grow-1">
+                  Relatório
+               </div>
+               <div class="flex-grow-0">
+                  <button type="button" class="btn btn-primary btn-sm" @onclick="ClearTransactions"> Limpar</button>
+               </div>
+            </div>
+         </div>
+         <div class="card-body">
+            <div class="table-responsive">
+               <table class="table table-striped table-hover table-primary align-middle">
+                  <thead class="table-light">
+                     <tr>
+                        <th>Valor</th>
+                        <th>Hora</th>
+                     </tr>
+                  </thead>
+                  <tbody class="table-group-divider">
+                     @foreach (var item in AccountTransactions)
+                     {
+                        <tr class="table-primary">
+                           <td scope="row" style="@(item.Type==OperationType.Credit?"color:red;":"")">
+
+                              @item.Amount.ToString("C2")
+                           </td>
+                           <td>@item.Date.ToShortTimeString()</td>
+                        </tr>
+                     }
+
+                  </tbody>
+                  <tfoot>
+                     <tr>
+                        <td colspan="2">
+
+                           @if (AccountTransactions.Any())
+                           {
+                              <b>
+                                 @Balance.ToString("C2")
+                              </b>
+                           }
+                        </td>
+
+                     </tr>
+                  </tfoot>
+               </table>
+            </div>
+
+
+         </div>
+      </div>
+   </div>
+</div>
+
+
+
+
+
+@code {
+
+
+   public decimal DebitValue { get; set; }
+   public decimal CreditValue { get; set; }
+
+   public decimal Balance{get;set;}
+
+
+   public List<AccountTransactionViewModel> AccountTransactions { get; set; } = new();
+
+   protected override async Task OnInitializedAsync()
+   {
+      await base.OnInitializedAsync();
+      await ListTransactions();
+   }
+
+   protected async Task AddDebit()
+   {
+      _Service.AddAccountTransaction(new AccountTransactionViewModel()
+      {
+         Account = 1,
+         Amount = DebitValue,
+         Type = OperationType.Debit
+      });
+      DebitValue = 0;
+      await ListTransactions();
+      StateHasChanged();
+      await Task.Yield();
+
+   }
+
+   protected async Task AddCredit()
+   {
+      _Service.AddAccountTransaction(new AccountTransactionViewModel()
+      {
+         Account = 1,
+         Amount = CreditValue,
+         Type = OperationType.Credit
+      });
+      CreditValue = 0;
+      await ListTransactions();
+      StateHasChanged();
+      await Task.Yield();
+
+   }
+
+   protected async Task ListTransactions()
+   {
+      await Task.Yield();
+
+      AccountTransactions = _Service.ListByDate(1, DateTime.Today);
+      await UpdateBalanceByDate();
+      StateHasChanged();
+   }
+
+    protected async Task UpdateBalanceByDate()
+   {
+      await Task.Yield();
+
+      Balance = _Service.GetBalanceByDate(1, DateTime.Today);
+      
+   }
+
+   protected async Task ClearTransactions()
+   {
+      await Task.Yield();
+
+      _Service.ClearByDate(1, DateTime.Today);
+      ListTransactions();
+      StateHasChanged();
+   }
+
+
+
+
+}
