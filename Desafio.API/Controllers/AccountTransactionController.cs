@@ -37,7 +37,13 @@ public class AccountTransactionController : DesafioController<AccountTransaction
    }
 
    [HttpGet]
-   public decimal GetBalance(int account, DateTime date)
+   public decimal GetBalance(int account)
+   {
+      return GetBalanceByDate(account,DateTime.Today);
+   }
+
+   [HttpGet]
+   public decimal GetBalanceByDate(int account, DateTime date)
    {
       return AccountTransactionService.GetBalanceByDate(account,date);
    }
