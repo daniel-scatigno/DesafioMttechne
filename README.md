@@ -1,14 +1,9 @@
 # Desafio da Mttechne
-Desafio proposto pela Mttechne
-
-<br/>
 
 ### DESCRITIVO DA SOLUÇÃO
 Um comerciante precisa controlar o seu fluxo de caixa diário com os lançamentos
 (débitos e créditos), também precisa de um relatório que disponibilize o saldo
 diário consolidado.
-
-<br/>
 
 ### REQUISITOS DE NEGÓCIO:
 - Serviço que faça o controle de lançamentos;
@@ -53,7 +48,7 @@ de diferentes banco de dados / frameworks de persistência
 
 ## Sobre o  que foi desenvolvido como solução
 - Duas aplicações são entregues:
-   1) a Desafio.API podendo expondo os serviços através das APIs (pode ser visualizada através da url http://localhost:8080/swagger)
+   1) a Desafio.API expondo os serviços através das APIs (pode ser visualizada através da url http://localhost:8080/swagger)
    2) a Desafio.Web sendo uma interface Web simples construida em Blazor Server
 - Foi utilizado para este exemplo o banco de dados Sqlite que usa um arquivo local para o banco de dados
 - Não tem controle do usuário, então foi utilizado apenas um usuário fixo no código
@@ -61,7 +56,7 @@ de diferentes banco de dados / frameworks de persistência
 <br/>
 
 ## Requisitos para rodar a aplicação
-- Sistema operactional (qualquer) com Docker instalado
+- Sistema operacional (qualquer) com Docker instalado
 - Ou Qualquer Sistema Operacional com dotnet SDK 7 instalado
 
 ### Build do Docker
