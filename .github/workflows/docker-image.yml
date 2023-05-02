@@ -15,4 +15,4 @@ jobs:
     - name: Build the Docker image APIs
       run: docker build . --file Dockerfile --tag desafioexecutable:$(date +%s)
     - name: Build the Docker image Blazor Server
-      run: docker build . --file DockerfileInterface --tag desafioInterfaceexecutable:$(date +%s)
+      run: docker build . --file DockerfileInterface --tag desafiointerfaceexecutable:$(date +%s)
