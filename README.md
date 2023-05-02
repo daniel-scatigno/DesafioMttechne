@@ -29,26 +29,54 @@ dos serviços;
 # SOLUÇÃO PROPOSTA
 Uma aplicação Web/Mobile onde o usuário comerciante possa acessar e informar os débitos e créditos
 
-![Alt text](/Diagrams/usecase.png "Casos de Uso")
-![Alt text](/Diagrams/activity.png "Casos de Uso")
-![Alt text](/Diagrams/classes.png "Casos de Uso")
+## Arquitetura baseada em Domain Driven Design
+![Alt text](/Diagrams/arquitecture.png "Arquitetura")
 
+1) Um Cliente (podendo ser uma aplicação Web, Mobile ou outro consumidor via RESTfull APIs)
+se comunicam com a camada de serviços, trafegando entre eles objetos(ViewModels)
+2) A camada de serviços se encarrega de transformar os objetos recebidos, em consultas, inserção, exclusão e alteração de dados
+3) A camada de serviços utiliza uma camada de infraestrutura utilizando um repositório genérico (Uso de Interfaces)
+permitindo a criação de outros mecanismos de repositórios futuros (escalabilidade) caso haja a necessidade do uso 
+de diferentes banco de dados / frameworks de persistência
+4) Este tipo de desenho permite o <b>crescimento da aplicação</b>, possibilitanto o <b>uso de diferentes frameworks e armazenagem de dados</b>
+
+
+## Casos de Uso
+![Alt text](/Diagrams/usecase.png "Casos de Uso")
+
+## Diagrama de Atividade
+![Alt text](/Diagrams/activity.png "Diagram de Atividade")
+
+## Diagrama de Classes (Entidades)
+![Alt text](/Diagrams/classes.png "Diagrama de Classes")
+
+
+## Sobre o  que foi desenvolvido como solução
+- Duas aplicações são entregues:
+   1) a Desafio.API podendo expondo os serviços através das APIs (pode ser visualizada através da url http://localhost:8080/swagger)
+   2) a Desafio.Web sendo uma interface Web simples construida em Blazor Server
+- Foi utilizado para este exemplo o banco de dados Sqlite que usa um arquivo local para o banco de dados
+- Não tem controle do usuário, então foi utilizado apenas um usuário fixo no código
 
 <br/>
 
-### Build do Docker: rodar na Pasta do Projeto
+## Requisitos para rodar a aplicação
+- Sistema operactional (qualquer) com Docker instalado
+- Ou Qualquer Sistema Operacional com dotnet SDK 7 instalado
+
+### Build do Docker
+- Rodar este comando na pasta raiz do Projeto
+```
 docker build . -f DockerfileInterface --tag desafiowebimage:latest
-
 docker build . -f Dockerfile --tag desafioimage:latest
+```
 
-Para rodar a API
-
-docker run -it --rm -p 8080:5000 -e ASPNETCORE_URLS=http://+:5000 --name desafioapp desafioimage
-
-acessar http://localhost:8080/swagger
-
-Para rodar a Interface Web (pode ser rodada sem a API)
-
+- Para rodar a Interface Web (pode ser rodada sem a API) http://localhost:8090/
+```
 docker run -it --rm -p 8090:5020 -e ASPNETCORE_URLS=http://+:5020 --name desafiowebapp desafiowebimage
+```
 
-acessar http://localhost:8090/
+- Para rodar a API http://localhost:8080/swagger
+```
+docker run -it --rm -p 8080:5000 -e ASPNETCORE_URLS=http://+:5000 --name desafioapp desafioimage
+```
