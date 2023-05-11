@@ -30,6 +30,10 @@
                <button type="submit" class="btn btn-outline-secondary" @onclick="AddCredit">Adicionar</button>
             </div>
 
+            <div class="validation-message">
+               @Message
+            </div>
+
          </div>
 
       </div>
@@ -59,13 +63,13 @@
                   <tbody class="table-group-divider">
                      @foreach (var item in AccountTransactions)
                      {
-                        <tr class="table-primary">
-                           <td scope="row" style="@(item.Type==OperationType.Credit?"color:red;":"")">
+                           <tr class="table-primary">
+                              <td scope="row" style="@(item.Type==OperationType.Credit?"color:red;":"")">
 
                               @item.Amount.ToString("C2")
-                           </td>
-                           <td>@item.Date.ToShortTimeString()</td>
-                        </tr>
+                              </td>
+                              <td>@item.Date.ToShortTimeString()</td>
+                           </tr>
                      }
 
                   </tbody>
@@ -75,9 +79,9 @@
 
                            @if (AccountTransactions.Any())
                            {
-                              <b>
+                                 <b>
                                  @Balance.ToString("C2")
-                              </b>
+                                 </b>
                            }
                         </td>
 
@@ -93,16 +97,14 @@
 </div>
 
 
-
-
-
 @code {
 
 
    public decimal DebitValue { get; set; }
    public decimal CreditValue { get; set; }
 
-   public decimal Balance{get;set;}
+   public decimal Balance { get; set; }
+   public string Message { get; set; }
 
 
    public List<AccountTransactionViewModel> AccountTransactions { get; set; } = new();
@@ -115,12 +117,7 @@
 
    protected async Task AddDebit()
    {
-      _Service.AddAccountTransaction(new AccountTransactionViewModel()
-      {
-         Account = 1,
-         Amount = DebitValue,
-         Type = OperationType.Debit
-      });
+      AddTransaction(OperationType.Debit, DebitValue);
       DebitValue = 0;
       await ListTransactions();
       StateHasChanged();
@@ -130,17 +127,31 @@
 
    protected async Task AddCredit()
    {
-      _Service.AddAccountTransaction(new AccountTransactionViewModel()
-      {
-         Account = 1,
-         Amount = CreditValue,
-         Type = OperationType.Credit
-      });
+      AddTransaction(OperationType.Credit, CreditValue);
       CreditValue = 0;
       await ListTransactions();
       StateHasChanged();
       await Task.Yield();
 
+   }
+
+   protected async Task AddTransaction(OperationType type, decimal value)
+   {
+      try
+      {
+         Message = null;
+         _Service.AddAccountTransaction(new AccountTransactionViewModel()
+         {
+            Account = 1,
+            Amount = value,
+            Type = type
+         });
+      }
+
+      catch (Exception ex)
+      {
+         Message = ex.Message;
+      }
    }
 
    protected async Task ListTransactions()
@@ -152,12 +163,12 @@
       StateHasChanged();
    }
 
-    protected async Task UpdateBalanceByDate()
+   protected async Task UpdateBalanceByDate()
    {
       await Task.Yield();
 
       Balance = _Service.GetBalanceByDate(1, DateTime.Today);
-      
+
    }
 
    protected async Task ClearTransactions()

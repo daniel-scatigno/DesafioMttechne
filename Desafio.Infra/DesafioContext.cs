@@ -1,6 +1,5 @@
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
-using Desafio.Infra.Models;
 
 namespace Desafio.Infra
 {

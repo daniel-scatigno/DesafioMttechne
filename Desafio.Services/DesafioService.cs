@@ -1,8 +1,3 @@
-global using Desafio.Infra.Models;
-global using Desafio.Infra;
-global using Desafio.Infra.Repository;
-global using Desafio.Services;
-global using Desafio.ViewModels;
 using AutoMapper;
 
 
@@ -26,6 +21,8 @@ public abstract class DesafioService<T> where T : class
       UOW = uow;
 
    }
+
+   //Operações CRUD
 
 
 }

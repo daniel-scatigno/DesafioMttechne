@@ -1,5 +1,3 @@
-using Microsoft.AspNetCore.Mvc;
-using AutoMapper;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Desafio.Test;

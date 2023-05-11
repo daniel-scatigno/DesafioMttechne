@@ -1,7 +1,8 @@
 global using Desafio.Infra.Models;
 global using Desafio.Infra;
 global using Desafio.Infra.Repository;
-
+global using Desafio.Services;
+global using Desafio.ViewModels;
 
 namespace Desafio.Services;
 public class AccountTransactionService : DesafioService<AccountTransaction>
@@ -14,8 +15,16 @@ public class AccountTransactionService : DesafioService<AccountTransaction>
 
    public AccountTransactionViewModel AddAccountTransaction(AccountTransactionViewModel viewModel)
    {
-      if (viewModel.Amount == 0)
-         return viewModel;
+      var validation = new AccountTransactionViewModelValidation().Validate(viewModel);
+      if (!validation.IsValid)
+      {
+         string message="";
+         foreach(var e in validation.Errors)
+            message+=e.ErrorMessage+"\r\n";
+         throw new Exception(message);
+      }
+
+
       var model = (AccountTransaction)DesafioMapper.AutoMap(viewModel);
       //Pega o ultimo saldo
       model.HistoricBalance = GetLastBalance(viewModel.Account);

@@ -1,6 +1,3 @@
-using System.Collections.ObjectModel;
-using System.Runtime.Intrinsics.X86;
-using System;
 using Desafio.Infra;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;

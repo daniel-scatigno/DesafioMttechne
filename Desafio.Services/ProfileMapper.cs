@@ -1,7 +1,4 @@
-
 using AutoMapper;
-using Desafio.Infra.Models;
-using Desafio.ViewModels;
 
 namespace Desafio.Services
 {

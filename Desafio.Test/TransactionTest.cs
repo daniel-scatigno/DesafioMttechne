@@ -1,6 +1,3 @@
-using Desafio.Infra;
-using Desafio.Infra.Models;
-using Desafio.Infra.Repository;
 using Microsoft.Extensions.DependencyInjection;
 using Desafio.Services;
 using Desafio.ViewModels;
@@ -18,7 +15,7 @@ public class TransactionTest : DesafioTest
    public void ShouldIncludeDebit(int account)
    {
       var accountTransactionService = ServiceProvider.GetRequiredService<AccountTransactionService>();
-      
+
       accountTransactionService.AddAccountTransaction(new AccountTransactionViewModel()
       {
          Account = account,
@@ -43,15 +40,15 @@ public class TransactionTest : DesafioTest
    public void ShouldIncludeCredit(int account)
    {
       var accountTransactionService = ServiceProvider.GetRequiredService<AccountTransactionService>();
-      
-      
+
+
       accountTransactionService.AddAccountTransaction(new AccountTransactionViewModel()
       {
          Account = account,
          Amount = 1000,
          Type = ViewModels.OperationType.Debit
       });
-      
+
       var balance = accountTransactionService.GetLastBalance(account);
 
       accountTransactionService.AddAccountTransaction(new AccountTransactionViewModel()
@@ -62,7 +59,35 @@ public class TransactionTest : DesafioTest
       });
       var lastBalance = accountTransactionService.GetLastBalance(account);
 
-      Assert.True(lastBalance == balance-200);
+      Assert.True(lastBalance == balance - 200);
+
+   }
+
+   [Theory]
+   [InlineData(1)]
+   public void ShouldFailToAddIncorrectValue(int account)
+   {
+      var accountTransactionService = ServiceProvider.GetRequiredService<AccountTransactionService>();
+
+      Assert.Throws<Exception>(() =>
+      {
+         accountTransactionService.AddAccountTransaction(new AccountTransactionViewModel()
+         {
+            Account = account,
+            Amount = 0,
+            Type = ViewModels.OperationType.Debit
+         });
+      });
+
+      Assert.Throws<Exception>(() =>
+      {
+         accountTransactionService.AddAccountTransaction(new AccountTransactionViewModel()
+         {
+            Account = account,
+            Amount = -1,
+            Type = ViewModels.OperationType.Credit
+         });
+      });
 
    }
 
@@ -75,11 +100,12 @@ public class TransactionTest : DesafioTest
 
       var accountTransactionService = ServiceProvider.GetRequiredService<AccountTransactionService>();
 
-      var list = accountTransactionService.ListByDate(account,DateTime.Today);
-      
-      Assert.True(list.Count()>0);
-      list.ForEach(t=>{
-         Console.WriteLine("Operação de "+t.Type.ToString()+" valor:"+t.Amount+" saldo:"+t.HistoricBalance);
+      var list = accountTransactionService.ListByDate(account, DateTime.Today);
+
+      Assert.True(list.Count() > 0);
+      list.ForEach(t =>
+      {
+         Console.WriteLine("Operação de " + t.Type.ToString() + " valor:" + t.Amount + " saldo:" + t.HistoricBalance);
       });
 
 

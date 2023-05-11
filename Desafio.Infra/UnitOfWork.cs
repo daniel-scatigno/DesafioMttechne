@@ -1,13 +1,6 @@
-
-using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
-using System.Security.Claims;
-using System.Linq;
-using System.Collections.Generic;
-using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.ChangeTracking;
-using System.Reflection;
+
 
 namespace Desafio.Infra
 {

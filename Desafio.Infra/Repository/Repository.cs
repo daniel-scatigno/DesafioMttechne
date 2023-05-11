@@ -1,17 +1,7 @@
-using System.Threading;
-using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Web;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-
-using System.Threading.Tasks;
-using System.ComponentModel.DataAnnotations.Schema;
-using Microsoft.Data.Sqlite;
-using System.Data.Common;
 
 namespace Desafio.Infra.Repository
 {
